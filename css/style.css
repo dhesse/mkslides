@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    text-align: center;
+    font-size: 4vh;
+}
+h1 { font-size: 8vh; }
+h2 { font-size: 7vh; }
+h3 { font-size: 6vh; }
+ul, code { text-align: left;
+           display: inline-block; }
+
+#outer {
+    height: 100vh;
+}
+.slide {
+    padding: 2vh;
+    
+}
