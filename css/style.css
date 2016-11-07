@@ -15,5 +15,10 @@ ul, code { text-align: left;
 }
 .slide {
     padding: 2vh;
-    
+}
+
+iframe {
+    width: 90vw;
+    border: 0;
+    height: 60vh;
 }
