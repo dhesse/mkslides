@@ -14,7 +14,19 @@ ul, code { text-align: left;
     height: 100vh;
 }
 .slide {
-    padding: 2vh;
+    page-break-after:always;
+    height: 98vh;
+}
+
+@media print {  
+  @page {
+    size: 297mm 210mm; /* landscape */
+   }
+}
+
+div.slide > *:first-child {
+    margin-top: 0px;
+    padding-top: 1vh;
 }
 
 iframe {
@@ -22,3 +34,9 @@ iframe {
     border: 0;
     height: 60vh;
 }
+
+img {
+    max-height: 80%;
+    max-width: 80%;
+}
+

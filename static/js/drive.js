@@ -1,5 +1,10 @@
 function makeDriver() {
 
+    if (window.location.href.indexOf('print') !== -1) {
+        console.log("Printing mode!");
+        return function() { };
+    }
+
     function parseUrl() {
         var urlparts = window.location.href.split("?");
         return { base: urlparts[0],
@@ -27,7 +32,7 @@ function makeDriver() {
             if (i != currentSlide)
                 slides[i].style.display = "none";
             else
-                slides[i].style.display = "inline";
+                slides[i].style.display = "block";
         }
     }
 
