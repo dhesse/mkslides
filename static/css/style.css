@@ -4,23 +4,30 @@ body {
     text-align: center;
     font-size: 4vh;
 }
-h1 { font-size: 8vh; }
-h2 { font-size: 7vh; }
-h3 { font-size: 6vh; }
-ul, code { text-align: left;
-           display: inline-block; }
+h1 { font-size: 8vh;
+     margin: 0.5em;}
+h2 { font-size: 7vh;
+     margin: 0.5em; }
+h3 { font-size: 6vh;
+     margin: 0.5em;}
+ul, code, table { text-align: left;
+                  display: inline-block;
+                  margin: 0.5em;}
 
 #outer {
     height: 100vh;
+    width: 100vw;
+    display: table-cell;
+    vertical-align: middle;
 }
 .slide {
     page-break-after:always;
-    height: 98vh;
+    padding: 2vh;
 }
 
 @media print {  
   @page {
-    size: 297mm 210mm; /* landscape */
+    size: 297mm 210mm;
    }
 }
 
@@ -30,6 +37,7 @@ div.slide > *:first-child {
 }
 
 iframe {
+    /* for jupyter-embedding */
     width: 90vw;
     border: 0;
     height: 60vh;
@@ -40,3 +48,22 @@ img {
     max-width: 80%;
 }
 
+th, td {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+tr.header {
+    border-bottom: .1em solid;
+}
+
+div.slidenum {
+    font-size: 1em;
+    position: fixed;
+    bottom: .2em;
+    right: .5em;
+}

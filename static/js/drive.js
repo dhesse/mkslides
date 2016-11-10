@@ -18,7 +18,8 @@ function makeDriver() {
         console.log("Unicode KEY code: " + key);
         var func = {"39": nextSlide,
                     "37": previousSlide}[key];
-        func();
+        if (func)
+            func();
     }
 
     function getSlides() {
@@ -34,6 +35,8 @@ function makeDriver() {
             else
                 slides[i].style.display = "block";
         }
+        var title = window.document.title + " (" + currentSlide.toString() + ")";
+        window.history.pushState("", title, parseUrl().base + "?" + currentSlide.toString());
     }
 
     function nextSlide() {
@@ -53,10 +56,27 @@ function makeDriver() {
         }
     }
 
+    function slideDiv(i) {
+        var div = document.createElement('div');
+        div.className = 'slidenum';
+        div.appendChild(document.createTextNode(i.toString()))
+        return div;
+    }
+    
+    function addSlideNumbers() {
+        console.log("Adding slide numbers!");
+        var slides = getSlides();
+        for (let i = 1; i < slides.length; i += 1) {
+            slides[i].appendChild(slideDiv(i))
+            console.log(slideDiv(i));
+        }
+    }
+
     setVisibility();
-    return uniKeyCode
+    addSlideNumbers();
+    return uniKeyCode;
 }
 
 window.onload = function() {
-    document.onkeypress = makeDriver();
+    document.onkeydown = makeDriver();
 };
