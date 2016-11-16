@@ -1,9 +1,31 @@
 function makeDriver() {
 
-    if (window.location.href.indexOf('print') !== -1) {
-        console.log("Printing mode!");
-        return function() { };
+    function mkBlack() {
+        var b = document.createElement('div');
+        b.setAttribute('style',
+                       'width: 100vw; height: 100vh; background-color: black;'
+                       + 'position: absolute; top: 0; left: 0');
+        b.style.display = 'none';
+        document.body.prepend(b);
+        return b;
     }
+
+    var blackoutSlide = mkBlack();
+
+    function toogleBlack() {
+        if (blackoutSlide.style.display === 'none')
+            blackoutSlide.style.display = 'block';
+        else
+            blackoutSlide.style.display = 'none';
+    }
+    
+    function returnEmptyIfPrintMode() {
+        if (window.location.href.indexOf('print') !== -1) {
+            return function() { };
+        }
+    }
+
+    returnEmptyIfPrintMode();
 
     function parseUrl() {
         var urlparts = window.location.href.split("?");
@@ -17,7 +39,10 @@ function makeDriver() {
         var key = event.keyCode || event.which;
         console.log("Unicode KEY code: " + key);
         var func = {"39": nextSlide,
-                    "37": previousSlide}[key];
+                    "34": nextSlide,
+                    "37": previousSlide,
+                    "33": previousSlide,
+                    "190": toogleBlack}[key];
         if (func)
             func();
     }
@@ -27,6 +52,11 @@ function makeDriver() {
             .getElementsByClassName("slide");
     }
 
+    function setBrowserAddressForReload() {
+        var title = window.document.title + " (" + currentSlide.toString() + ")";
+        window.history.pushState("", title, parseUrl().base + "?" + currentSlide.toString());
+    }
+    
     function setVisibility() {
         var slides = getSlides();
         for (var i = 0; i < slides.length; i += 1){
@@ -35,8 +65,6 @@ function makeDriver() {
             else
                 slides[i].style.display = "block";
         }
-        var title = window.document.title + " (" + currentSlide.toString() + ")";
-        window.history.pushState("", title, parseUrl().base + "?" + currentSlide.toString());
     }
 
     function nextSlide() {
@@ -45,6 +73,7 @@ function makeDriver() {
             currentSlide = next;
             console.log(next);
             setVisibility();
+            setBrowserAddressForReload();
         }
     }
 
@@ -53,6 +82,7 @@ function makeDriver() {
         if (prev >= 0){
             currentSlide = prev;
             setVisibility();
+            setBrowserAddressForReload();
         }
     }
 

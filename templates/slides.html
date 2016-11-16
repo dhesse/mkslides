@@ -32,14 +32,17 @@ $endif$
 $for(header-includes)$
   $header-includes$
   $endfor$
-  <script src="../js/drive.js"></script>
-  <link rel="stylesheet" href="../css/style.css">
+  <script src="/static/js/drive.js"></script>
+  <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
 $for(include-before)$
 $include-before$
 $endfor$
 <div id="outer">
+  <div id="header">
+    <img src="/static/img/header.png">
+  </div>
 $if(title)$
 <div class="slide">
 <h1 class="title">$title$</h1>

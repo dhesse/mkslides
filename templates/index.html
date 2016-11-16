@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Talks</title>
+    <script src="../static/js/talklist.js"></script>
+  </head>
+  <body>
+    <h1>Talk List</h1>
+    {% for talk in talks %}
+    <li><a href="talk/{{talk['url']}}" target="_blank">
+      {{ talk['name'] + " (" + talk['url'] + ")" }}</a></li>
+    {% endfor %}
+    <ul id="talks">
+    </ul>
+  </body>
+</html>

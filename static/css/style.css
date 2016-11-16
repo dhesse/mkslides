@@ -5,20 +5,21 @@ body {
     font-size: 4vh;
 }
 h1 { font-size: 8vh;
-     margin: 0.5em;}
+     margin: 0.5em;
+     text-transform: uppercase;}
 h2 { font-size: 7vh;
      margin: 0.5em; }
 h3 { font-size: 6vh;
      margin: 0.5em;}
-ul, code, table { text-align: left;
-                  display: inline-block;
-                  margin: 0.5em;}
+code, table { text-align: left;
+              display: table;
+              margin: 0.5em auto;}
 
 #outer {
     height: 100vh;
     width: 100vw;
     display: table-cell;
-    vertical-align: middle;
+    /*vertical-align: middle;*/
 }
 .slide {
     page-break-after:always;
@@ -36,6 +37,10 @@ div.slide > *:first-child {
     padding-top: 1vh;
 }
 
+div.slide > p {
+    margin: 5px;
+}
+
 iframe {
     /* for jupyter-embedding */
     width: 90vw;
@@ -43,9 +48,20 @@ iframe {
     height: 60vh;
 }
 
+/*#header {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}*/
+
+#header > img {
+    max-width: 90vw;
+    width: 90vw;
+}
+
 img {
-    max-height: 80%;
-    max-width: 80%;
+    max-height: 70vh;
+    max-width: 70vw;
 }
 
 th, td {
@@ -66,4 +82,13 @@ div.slidenum {
     position: fixed;
     bottom: .2em;
     right: .5em;
+}
+
+ul {
+    text-align: left;
+}
+
+div > ul {
+    display: table;
+    margin: .5em auto;
 }
