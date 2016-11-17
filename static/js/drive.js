@@ -89,7 +89,7 @@ function makeDriver() {
     function slideDiv(i) {
         var div = document.createElement('div');
         div.className = 'slidenum';
-        div.appendChild(document.createTextNode(i.toString()))
+        div.appendChild(document.createTextNode(i.toString()));
         return div;
     }
     
