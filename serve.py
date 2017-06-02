@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import argparse
-from flask import Flask, jsonify, send_from_directory, render_template
+from flask import Flask, jsonify, send_from_directory, render_template, request
 from itertools import chain
 from re import search
 import os
@@ -41,18 +41,25 @@ def main():
 def get_talks():
     return jsonify(get_talks_list())
 
+@app.route("/python", methods=['GET', 'POST'])
+def run_python():
+    print request.json
+    return 'req'
+
 def get_file_path():
     return os.path.dirname(os.path.realpath(__file__))
 
 def call_pandoc(filename):
     fmt = "+".join(["markdown",
+                    "raw_html",
                     "link_attributes",
                     "simple_tables",
-                    "grid_tables"])
+                    "grid_tables",
+                    "tex_math_dollars"])
     data_dir = get_file_path()
     hrfilter = os.path.join(get_file_path(), 'replacehr.py')
     call = ["pandoc", "-f", fmt, "-t", "html",
-            "--filter", hrfilter, "-s",
+            "--filter", hrfilter, "-s", "--mathjax",
             "--data-dir", data_dir, "--template", "slides",
             filename]
     return subprocess.check_output(call)

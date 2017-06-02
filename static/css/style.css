@@ -5,25 +5,37 @@ body {
     font-size: 4vh;
 }
 h1 { font-size: 8vh;
-     margin: 0.5em;
-     text-transform: uppercase;}
+     margin: 0.5em;}
+     //text-transform: uppercase;}
 h2 { font-size: 7vh;
-     margin: 0.5em; }
+     margin: 0.5em;}
+     //text-transform: uppercase;}
 h3 { font-size: 6vh;
      margin: 0.5em;}
-code, table { text-align: left;
-              display: table;
-              margin: 0.5em auto;}
+     //text-transform: uppercase;}
+code, table {
+    text-align: left;
+    margin: 0.5em auto;
+}
+
+code {
+    display: inline-block;
+}
+
+blockquote {
+    font-style: italic;
+    text-align: center;
+}
 
 #outer {
     height: 100vh;
     width: 100vw;
     display: table-cell;
-    /*vertical-align: middle;*/
+    vertical-align: middle;
 }
 .slide {
     page-break-after:always;
-    padding: 2vh;
+    padding: 2vh 15vh;
 }
 
 @media print {  
@@ -37,6 +49,18 @@ div.slide > *:first-child {
     padding-top: 1vh;
 }
 
+
+/* div.slide::before {
+    background-image: url(/static/img/header.png);
+display: inline-block;
+width: 90vw;
+height: 15vh;
+content: "";
+background-size: 70vw;
+background-repeat: no-repeat;
+background-position: center;
+} */
+
 div.slide > p {
     margin: 5px;
 }
@@ -48,11 +72,11 @@ iframe {
     height: 60vh;
 }
 
-/*#header {
+#header {
     position: fixed;
     top: 0px;
     left: 0px;
-}*/
+}
 
 #header > img {
     max-width: 90vw;
@@ -70,7 +94,8 @@ th, td {
 }
 
 table {
-  border-collapse: collapse;
+    display: inline-block;
+    border-collapse: collapse;
 }
 
 tr.header {
@@ -84,11 +109,16 @@ div.slidenum {
     right: .5em;
 }
 
-ul {
+ul, ol {
     text-align: left;
 }
 
-div > ul {
+div > ul, ol {
     display: table;
     margin: .5em auto;
+}
+
+p.caption {
+    font-size: .5em;
+    margin-top: 0;
 }

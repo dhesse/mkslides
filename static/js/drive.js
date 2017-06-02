@@ -1,5 +1,41 @@
 function makeDriver() {
 
+    function addInputKeyListeners() {
+        var inputs = document.querySelectorAll('input.python');
+        var ctrlStatus = false;
+        var altStatus = false;
+        for (let i = 0; i < inputs.length; i += 1) {
+            var input = inputs[i];
+            input.onkeydown = function(event) {
+                var key = event.keyCode || evnt.which;
+                if (key == 17) 
+                    ctrlStatus = true;
+                if (key == 18)
+                    altStatus = true;
+                if (key == 13 && (ctrlStatus || altStatus)) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '/python', true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.onreadystatechange = function() {
+                        console.log(xhr.responseText);
+                    }
+                    var msg = {code: input.value,
+                               kernel: input.kernel};
+                    xhr.send(JSON.stringify(msg));
+                }
+            };
+            input.onkeyup = function(event) {
+                var key = event.keyCode || evnt.which;
+                if (key == 17) 
+                    ctrlStatus = false;
+                if (key == 18)
+                    altStatus = false;
+            };
+        };
+    }
+
+    addInputKeyListeners();
+    
     function mkBlack() {
         var b = document.createElement('div');
         b.setAttribute('style',
@@ -19,13 +55,9 @@ function makeDriver() {
             blackoutSlide.style.display = 'none';
     }
     
-    function returnEmptyIfPrintMode() {
-        if (window.location.href.indexOf('print') !== -1) {
-            return function() { };
-        }
+    if (window.location.href.indexOf('print') !== -1) {
+        return function() { };
     }
-
-    returnEmptyIfPrintMode();
 
     function parseUrl() {
         var urlparts = window.location.href.split("?");
@@ -37,7 +69,7 @@ function makeDriver() {
 
     function uniKeyCode(event) {
         var key = event.keyCode || event.which;
-        console.log("Unicode KEY code: " + key);
+        //console.log("Unicode KEY code: " + key);
         var func = {"39": nextSlide,
                     "34": nextSlide,
                     "37": previousSlide,
@@ -71,7 +103,6 @@ function makeDriver() {
         var next = currentSlide + 1;
         if (next < getSlides().length){
             currentSlide = next;
-            console.log(next);
             setVisibility();
             setBrowserAddressForReload();
         }
@@ -94,12 +125,9 @@ function makeDriver() {
     }
     
     function addSlideNumbers() {
-        console.log("Adding slide numbers!");
         var slides = getSlides();
-        for (let i = 1; i < slides.length; i += 1) {
+        for (let i = 1; i < slides.length; i += 1)
             slides[i].appendChild(slideDiv(i))
-            console.log(slideDiv(i));
-        }
     }
 
     setVisibility();
