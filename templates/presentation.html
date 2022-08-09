@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <script src="/static/js/drive.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
+  </head>
+
+  <body>
+    <div id="outer">
+      {% for slide in slide_html %}
+      <div class="slide">
+	{{ slide|safe }}
+	<div class="footer">
+	  <img src="/static/img/footer_uio.png"/>
+	</div>
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>

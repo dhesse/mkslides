@@ -1,18 +1,18 @@
 body {
     margin: 0;
     font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
-    text-align: center;
+    text-align: left;
     font-size: 4vh;
 }
 h1 { font-size: 8vh;
      margin: 0.5em;}
-     //text-transform: uppercase;}
+
 h2 { font-size: 7vh;
      margin: 0.5em;}
-     //text-transform: uppercase;}
+
 h3 { font-size: 6vh;
      margin: 0.5em;}
-     //text-transform: uppercase;}
+
 code, table {
     text-align: left;
     margin: 0.5em auto;
@@ -30,12 +30,22 @@ blockquote {
 #outer {
     height: 100vh;
     width: 100vw;
-    display: table-cell;
-    vertical-align: middle;
 }
+
 .slide {
     page-break-after:always;
-    padding: 2vh 15vh;
+    padding: 2vh 2vh;
+    height: 90vh;
+}
+
+.footer {
+    position: fixed;
+    bottom: 1vh;
+    left: 1vw;
+}
+
+.footer > img {
+    width: 20vw;
 }
 
 @media print {  
@@ -50,17 +60,6 @@ div.slide > *:first-child {
 }
 
 
-/* div.slide::before {
-    background-image: url(/static/img/header.png);
-display: inline-block;
-width: 90vw;
-height: 15vh;
-content: "";
-background-size: 70vw;
-background-repeat: no-repeat;
-background-position: center;
-} */
-
 div.slide > p {
     margin: 5px;
 }
@@ -70,17 +69,6 @@ iframe {
     width: 90vw;
     border: 0;
     height: 60vh;
-}
-
-#header {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-}
-
-#header > img {
-    max-width: 90vw;
-    width: 90vw;
 }
 
 img {
@@ -94,7 +82,6 @@ th, td {
 }
 
 table {
-    display: inline-block;
     border-collapse: collapse;
 }
 
@@ -113,12 +100,8 @@ ul, ol {
     text-align: left;
 }
 
-div > ul, ol {
-    display: table;
-    margin: .5em auto;
-}
-
 p.caption {
     font-size: .5em;
     margin-top: 0;
 }
+

@@ -1,0 +1,10 @@
+{{ header|safe }}
+<table>
+  <tr>
+    {% for column in columns %}
+    <td>
+      {{ column|safe }}
+    </td>
+    {% endfor %}
+  </tr>
+</table>
